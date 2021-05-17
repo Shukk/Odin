@@ -18,3 +18,12 @@ Using stolen Kerberos tickets to authenticate to resources as a user without com
 2) Inject the stolen TGT into your own session (by using ```mimikatz.exe kerberos::ptt```)
 
 More information, demonstration and ways to detect, mitigate and respond: https://attack.stealthbits.com/pass-the-ticket
+
+
+## Golden Ticket
+
+Compromising the ```krbtgt``` user hash to create Kerberos tickets as if you were Active Directory.
+
+1) 
+
+More information, demonstration and ways to detect, mitigate and respond: https://attack.stealthbits.com/how-golden-ticket-attack-works
