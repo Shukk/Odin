@@ -39,7 +39,7 @@ More information, demonstration and ways to detect, mitigate and respond: https:
 
 Using the Directory Replication Service (DRS) Remote Protocol to replicate data (including credentials) from Active Directory.
 
-1) Extract Kerberos tickets from ```lsass.exe``` (by using ```mimikatz.exe "privilege::debug" "sekurlsa::tickets /export"``` for example)
-2) Inject the stolen TGT into your own session (by using ```mimikatz.exe kerberos::ptt```)
+1) Compromise an account with the necessary privileges (*Replicating Directory Changes All* and *Replicating Directory Changes*) (by using ```mimikatz.exe "privilege::debug" "sekurlsa::msv"``` for example and then verify the credentials with a simple Pass The Hash)
+2) Replicate credentials from Active Directory (by using ```mimikatz.exe "lsadump::dcsync /user:DOMAIN\{user}"```). The most common target for replication is the ```krbtgt``` account, as this account’s password is a prerequisite for a *Golden Ticket*
 
 More information, demonstration and ways to detect, mitigate and respond: https://attack.stealthbits.com/privilege-escalation-using-mimikatz-dcsync
